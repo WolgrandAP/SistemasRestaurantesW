@@ -4,14 +4,14 @@ public class Pedido {
 
     private Item item;
     private Cliente cliente;
-    private HashMap<String, Double> listaIntens;
+    private HashMap<String, Double> listaItens;
+    private int quantidade;
     private double totalPagar;
 
-    public Pedido(Item item, Cliente cliente, HashMap<String, Double> listaIntens) {
-        this.item = item;
-        this.cliente = cliente;
-        this.listaIntens = listaIntens;
+    public Pedido() {
+        this.listaItens = new HashMap<>();
     }
+
 
     public Item getItem() {
         return item;
@@ -38,12 +38,15 @@ public class Pedido {
 
     public void adicionarItem(Item item) {
 
-        listaIntens.put(item.getProduto(),item.getPreco());
+        String nomeProduto = item.getProduto();
+        double precoProduto = item.getPreco();
+
+        listaItens.put(nomeProduto,precoProduto);
         setTotalPagar(getTotalPagar()+item.getPreco());
     }
 
     public HashMap<String, Double> mostrarLista() {
-        return listaIntens;
+        return listaItens;
     }
 
 }
